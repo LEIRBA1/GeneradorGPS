@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPS Map Photo Generator</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 1000px; margin: auto; }
+    input[type="text"], input[type="file"] { width: 100%; margin-bottom: 10px; padding: 8px; }
+    button { padding: 10px 20px; background: #007BFF; color: white; border: none; cursor: pointer; margin-right: 10px; }
+    #canvasOutput { margin-top: 20px; border: 1px solid #ccc; max-width: 100%; background: transparent; }
+  </style>
+</head>
+<body>
+  <h2>GPS Map Photo Generator</h2>
+
+  <label>Imagen (JPG/PNG):</label>
+  <input type="file" id="photoInput" accept="image/*">
+
+  <label>Mapa (JPG/PNG):</label>
+  <input type="file" id="mapInput" accept="image/*">
+
+  <label>Ubicación:</label>
+  <input type="text" id="location" value="Cerro de Ortega, Col., México">
+
+  <label>Dirección:</label>
+  <input type="text" id="address" value="Carretera Federal 200, frente al Panteón Santo Domingo">
+
+  <label>Latitud:</label>
+  <input type="text" id="lat" value="18.760962">
+
+  <label>Longitud:</label>
+  <input type="text" id="long" value="-103.729547">
+
+  <label>Fecha y hora:</label>
+  <input type="text" id="datetime" value="07/22/2025 10:00 a.m.">
+
+  <button onclick="generateImage()">Generar Imagen</button>
+  <button onclick="downloadImage()">Descargar Imagen</button>
+
+  <canvas id="canvasOutput"></canvas>
+
+  <script>
+    function generateImage() {
+      const photoInput = document.getElementById('photoInput');
+      const mapInput = document.getElementById('mapInput');
+      const location = document.getElementById('location').value;
+      const address = document.getElementById('address').value;
+      const lat = document.getElementById('lat').value;
+      const long = document.getElementById('long').value;
+      const datetime = document.getElementById('datetime').value;
+
+      const canvas = document.getElementById('canvasOutput');
+      const ctx = canvas.getContext('2d');
+
+      if (!photoInput.files[0]) {
+        alert("Por favor selecciona una imagen principal.");
+        return;
+      }
+
+      const readerPhoto = new FileReader();
+      const readerMap = new FileReader();
+
+      readerPhoto.onload = function(e) {
+        const photo = new Image();
+        photo.onload = function() {
+          const mapImage = new Image();
+
+          const margin = 20;
+          const mapWidth = 120; // aún más pequeño
+          const mapHeight = 120;
+
+          mapImage.onload = function() {
+            drawCanvas(photo, mapImage);
+          };
+
+          mapImage.onerror = function() {
+            drawCanvas(photo, null);
+          };
+
+          if (mapInput.files[0]) {
+            readerMap.onload = function(e2) {
+              mapImage.src = e2.target.result;
+            };
+            readerMap.readAsDataURL(mapInput.files[0]);
+          } else {
+            drawCanvas(photo, null);
+          }
+
+          function drawCanvas(photo, mapImage) {
+            const footerHeight = 160;
+            const canvasWidth = photo.width;
+            const canvasHeight = photo.height;
+
+            canvas.width = canvasWidth;
+            canvas.height = canvasHeight;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(photo, 0, 0);
+
+            // Fondo semitransparente
+            const footerY = canvas.height - footerHeight;
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+            ctx.fillRect(0, footerY, canvas.width, footerHeight);
+
+            // Imagen del mapa
+            const mapX = 20;
+            const mapY = footerY + 10;
+            if (mapImage) {
+              ctx.drawImage(mapImage, mapX, mapY, mapWidth, mapHeight);
+            }
+
+            // Texto
+            const textX = mapX + mapWidth + 20;
+            let lineY = mapY + 18;
+            const lineSpacing = 20;
+
+            ctx.fillStyle = "white";
+            ctx.font = "bold 13px Arial";
+            ctx.fillText(location, textX, lineY); lineY += lineSpacing;
+
+            ctx.font = "11px Arial";
+            const addressLines = wrapText(ctx, address, canvas.width - textX - 20);
+            for (const line of addressLines) {
+              ctx.fillText(line, textX, lineY);
+              lineY += lineSpacing;
+            }
+
+            ctx.fillText(`Lat: ${lat}`, textX, lineY); lineY += lineSpacing;
+            ctx.fillText(`Long: ${long}`, textX, lineY); lineY += lineSpacing;
+            ctx.fillText(`Fecha/Hora: ${datetime}`, textX, lineY);
+          }
+        };
+        photo.src = e.target.result;
+      };
+      readerPhoto.readAsDataURL(photoInput.files[0]);
+    }
+
+    function wrapText(ctx, text, maxWidth) {
+      const words = text.split(' ');
+      const lines = [];
+      let line = '';
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxWidth && n > 0) {
+          lines.push(line);
+          line = words[n] + ' ';
+        } else {
+          line = testLine;
+        }
+      }
+      lines.push(line.trim());
+      return lines;
+    }
+
+    function downloadImage() {
+      const canvas = document.getElementById('canvasOutput');
+      const link = document.createElement('a');
+      link.download = 'foto_georeferenciada.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    }
+  </script>
+</body>
+</html>
