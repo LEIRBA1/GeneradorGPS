@@ -40,6 +40,23 @@
 
   <canvas id="canvasOutput"></canvas>
 
+  <hr>
+  <h2>Registro de Infracciones</h2>
+
+  <label>Placa:</label>
+  <input type="text" id="plate">
+
+  <label>Tipo de infracción:</label>
+  <input type="text" id="infractionType">
+
+  <label>Descripción:</label>
+  <textarea id="description" style="width:100%; margin-bottom:10px; padding:8px;"></textarea>
+
+  <button onclick="registerInfraction()">Registrar Infracción</button>
+
+  <h3>Infracciones Registradas</h3>
+  <ul id="infractionList"></ul>
+
   <script>
     function generateImage() {
       const photoInput = document.getElementById('photoInput');
@@ -161,6 +178,53 @@
       link.href = canvas.toDataURL();
       link.click();
     }
+
+    function registerInfraction() {
+      const plate = document.getElementById('plate').value;
+      const infractionType = document.getElementById('infractionType').value;
+      const description = document.getElementById('description').value;
+      const location = document.getElementById('location').value;
+      const address = document.getElementById('address').value;
+      const lat = document.getElementById('lat').value;
+      const long = document.getElementById('long').value;
+      const datetime = document.getElementById('datetime').value;
+      const canvas = document.getElementById('canvasOutput');
+      const imageData = canvas.toDataURL();
+
+      const newInfraction = {
+        plate,
+        infractionType,
+        description,
+        location,
+        address,
+        lat,
+        long,
+        datetime,
+        imageData
+      };
+
+      const infractions = JSON.parse(localStorage.getItem('infractions') || '[]');
+      infractions.push(newInfraction);
+      localStorage.setItem('infractions', JSON.stringify(infractions));
+      renderInfractions();
+    }
+
+    function renderInfractions() {
+      const list = document.getElementById('infractionList');
+      list.innerHTML = '';
+      const infractions = JSON.parse(localStorage.getItem('infractions') || '[]');
+      infractions.forEach((inf, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <strong>${inf.plate}</strong> - ${inf.infractionType} - ${inf.datetime}<br>
+          Lat: ${inf.lat}, Long: ${inf.long}<br>
+          <img src="${inf.imageData}" width="100">
+        `;
+        list.appendChild(li);
+      });
+    }
+
+    renderInfractions();
   </script>
 </body>
 </html>
