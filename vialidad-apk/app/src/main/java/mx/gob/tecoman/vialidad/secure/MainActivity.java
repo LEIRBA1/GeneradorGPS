@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.CookieManager;
 import android.webkit.GeolocationPermissions;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
@@ -52,6 +53,9 @@ public class MainActivity extends Activity {
         s.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
         s.setSavePassword(false);
         s.setSupportZoom(false);
+        s.setUserAgentString(s.getUserAgentString() + " VialidadTecoman/1.0.1");
+        CookieManager.getInstance().setAcceptCookie(true);
+        CookieManager.getInstance().setAcceptThirdPartyCookies(webView,true);
         WebView.setWebContentsDebuggingEnabled(false);
 
         webView.setWebViewClient(new WebViewClient(){
@@ -70,7 +74,7 @@ public class MainActivity extends Activity {
                 }
             }
         });
-        webView.loadUrl(APP_URL);
+        webView.loadUrl(APP_URL + "?app=android&ui=mobile&role=admin_general");
     }
 
     private boolean isAllowed(String raw) {
