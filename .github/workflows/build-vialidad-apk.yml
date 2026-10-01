@@ -22,12 +22,12 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
-      - name: Build release APK
-        run: gradle :app:assembleRelease --no-daemon
+      - name: Build debug APK (installable test)
+        run: gradle :app:assembleDebug --no-daemon
       - name: Rename APK
-        run: cp app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/Vialidad-Tecoman-1.0.0-unsigned.apk
+        run: cp app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/Vialidad-Tecoman-1.0.0-PRUEBA.apk
       - uses: actions/upload-artifact@v4
         with:
-          name: Vialidad-Tecoman-APK
-          path: vialidad-apk/app/build/outputs/apk/release/Vialidad-Tecoman-1.0.0-unsigned.apk
+          name: Vialidad-Tecoman-APK-Instalable
+          path: vialidad-apk/app/build/outputs/apk/debug/Vialidad-Tecoman-1.0.0-PRUEBA.apk
           if-no-files-found: error
