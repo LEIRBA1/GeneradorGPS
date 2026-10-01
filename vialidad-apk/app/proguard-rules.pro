@@ -1,0 +1,4 @@
+-keep public class mx.gob.tecoman.vialidad.secure.MainActivity { public <init>(); }
+-keepclassmembers class * extends android.webkit.WebChromeClient { *; }
+-keepclassmembers class * extends android.webkit.WebViewClient { *; }
+-dontnote android.webkit.**
