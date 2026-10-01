@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
     @SuppressLint("SetJavaScriptEnabled")
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+        // Screenshots and screen recording are intentionally allowed.\n        // Do not enable FLAG_SECURE here.
         Window w=getWindow();
         w.setStatusBarColor(Color.rgb(7,24,39));
         w.setNavigationBarColor(Color.rgb(7,24,39));
