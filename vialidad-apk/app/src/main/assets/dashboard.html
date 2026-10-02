@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Vialidad Tecomán</title>
+<style>
+:root{--bg:#071827;--panel:#0d2538;--panel2:#102d43;--line:#1b4058;--txt:#f5f9fc;--muted:#9db2c2;--blue:#168cff;--green:#17b26a;--orange:#f59e0b;--red:#ef4444;--purple:#7c5cff;--cyan:#06b6d4}
+*{box-sizing:border-box}html,body{margin:0;background:linear-gradient(180deg,#061420,#0a2132 48%,#071827);color:var(--txt);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+body{min-height:100vh;padding-bottom:92px}.top{padding:calc(20px + env(safe-area-inset-top)) 18px 18px;background:linear-gradient(135deg,#09253a,#071824);border-bottom:1px solid #12344b;position:sticky;top:0;z-index:5}
+.brand{display:flex;align-items:center;gap:13px}.badge-logo{width:52px;height:52px;border-radius:16px;background:linear-gradient(145deg,#123f5d,#0a2336);border:1px solid #2f607a;display:grid;place-items:center;font-size:27px;box-shadow:0 10px 30px #0005}
+.brand h1{font-size:20px;line-height:1.05;margin:0;letter-spacing:.4px}.brand small{color:#8fb0c4}.role{margin-top:14px;display:flex;justify-content:space-between;gap:12px;align-items:center;background:#0c2940;border:1px solid #163f59;border-radius:15px;padding:11px 13px}
+.role b{font-size:14px}.online{font-size:12px;color:#7ee2ac}.version{font-size:11px;color:#7895a8}
+main{padding:16px}.hero{background:linear-gradient(145deg,#0c3c5b,#11283b);border:1px solid #24546c;border-radius:21px;padding:17px;box-shadow:0 18px 45px #0003;margin-bottom:16px}
+.hero .eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1.4px;color:#7dd3fc}.hero h2{margin:7px 0 4px;font-size:22px}.hero p{margin:0;color:#b5c6d2;font-size:13px;line-height:1.45}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0 19px}.stat{background:#0c2638;border:1px solid #173a50;border-radius:16px;padding:12px 10px}.stat strong{display:block;font-size:20px}.stat span{font-size:11px;color:#9ab0bf}.section-title{display:flex;justify-content:space-between;align-items:end;margin:18px 2px 10px}.section-title h3{margin:0;font-size:15px}.section-title span{font-size:11px;color:#7f9aac}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.card{border:0;text-align:left;color:white;border-radius:18px;padding:15px;min-height:112px;box-shadow:0 12px 28px #0002;position:relative;overflow:hidden}.card:active{transform:scale(.985)}.card .ico{font-size:26px;display:block;margin-bottom:14px}.card b{display:block;font-size:14px;line-height:1.2}.card small{display:block;color:#d8e5edaa;margin-top:5px;font-size:10px}.c-blue{background:linear-gradient(145deg,#0a62ba,#123c66)}.c-green{background:linear-gradient(145deg,#087d4b,#124535)}.c-purple{background:linear-gradient(145deg,#5a42b8,#2e315c)}.c-cyan{background:linear-gradient(145deg,#087e95,#16445a)}.c-slate{background:linear-gradient(145deg,#24475f,#192d3b)}.c-red{background:linear-gradient(145deg,#9f2632,#522733)}.c-orange{background:linear-gradient(145deg,#b86c08,#5a3d14)}
+.wide{grid-column:1/-1;min-height:86px;display:flex;align-items:center;gap:14px}.wide .ico{margin:0}.pending{position:absolute;right:10px;top:10px;background:#ffd43b;color:#3a2a00;border-radius:999px;padding:4px 8px;font-size:9px;font-weight:800}.subgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.mini{background:#0c2638;border:1px solid #173a50;color:white;border-radius:15px;padding:13px;text-align:left;min-height:78px}.mini span{font-size:20px}.mini b{display:block;font-size:12px;margin-top:8px}.mini em{font-style:normal;font-size:9px;color:#88a3b5}
+.note{margin:14px 0 0;background:#0b2233;border:1px dashed #28516a;border-radius:15px;padding:12px;color:#9fb5c3;font-size:11px;line-height:1.45}
+.bottom{position:fixed;left:0;right:0;bottom:0;background:#071521ee;backdrop-filter:blur(12px);border-top:1px solid #183549;padding:8px 10px calc(8px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(4,1fr);z-index:10}.nav{border:0;background:transparent;color:#87a1b2;font-size:10px;padding:7px 3px}.nav .n{font-size:20px;display:block;margin-bottom:2px}.nav.active{color:#49a9ff}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><div class="badge-logo">🚓</div><div><h1>VIALIDAD<br>TECOMÁN</h1><small>Aplicación móvil</small></div></div>
+  <div class="role"><div><b>Panel de administración</b><div class="online">● Sistema conectado</div></div><div class="version">v1.0.2</div></div>
+</header>
+<main>
+  <section class="hero"><div class="eyebrow">Panel principal</div><h2>Control operativo</h2><p>Acceso rápido a infracciones, folios, hechos de tránsito, reportes y estadísticas.</p></section>
+  <div class="stats"><div class="stat"><strong>∞</strong><span>Estadísticas</span></div><div class="stat"><strong>GPS</strong><span>Mapas</span></div><div class="stat"><strong>24/7</strong><span>Operación</span></div></div>
+
+  <div class="section-title"><h3>Operación vial</h3><span>Módulos activos</span></div>
+  <div class="grid">
+    <button class="card c-blue" onclick="openRoute('infraccion')"><span class="ico">📝</span><b>Capturar infracción</b><small>Registrar boleta y datos del hecho</small></button>
+    <button class="card c-green" onclick="openRoute('amonestacion')"><span class="ico">✅</span><b>Amonestación</b><small>Registro rápido de amonestaciones</small></button>
+    <button class="card c-purple" onclick="openRoute('folios_agente')"><span class="ico">🎫</span><b>Folios</b><small>Control y consulta de folios</small></button>
+    <button class="card c-cyan" onclick="openRoute('hechos_transito')"><span class="ico">🚧</span><b>Hechos de tránsito</b><small>Registro de accidentes y eventos</small></button>
+  </div>
+
+  <div class="section-title"><h3>Consulta y análisis</h3><span>Administrador</span></div>
+  <div class="subgrid">
+    <button class="mini" onclick="openRoute('estadisticas')"><span>📊</span><b>Estadísticas</b><em>Vista general</em></button>
+    <button class="mini" onclick="openRoute('reporte')"><span>📄</span><b>Reportes</b><em>Infracciones</em></button>
+    <button class="mini" onclick="openRoute('busqueda')"><span>🔎</span><b>Búsqueda</b><em>Consulta de datos</em></button>
+    <button class="mini" onclick="openRoute('mapa_calor')"><span>🗺️</span><b>Mapa de calor</b><em>Incidencia vial</em></button>
+    <button class="mini" onclick="openRoute('mapa_hechos')"><span>📍</span><b>Mapa de hechos</b><em>Geolocalización</em></button>
+    <button class="mini" onclick="openRoute('cat_lugares')"><span>🏙️</span><b>Lugares</b><em>Catálogo</em></button>
+  </div>
+
+  <div class="section-title"><h3>Administración</h3><span>Control general</span></div>
+  <div class="grid">
+    <button class="card c-red" onclick="openRoute('borrar_boleta')"><span class="ico">🗑️</span><b>Administrar boletas</b><small>Correcciones con control de acceso</small></button>
+    <button class="card c-slate" onclick="pending('Usuarios y permisos')"><span class="ico">👥</span><b>Usuarios y permisos</b><small>Administrador General</small><span class="pending">EN PREPARACIÓN</span></button>
+    <button class="card c-slate" onclick="pending('Dispositivos autorizados')"><span class="ico">📱</span><b>Dispositivos</b><small>Aprobar, bloquear y revocar</small><span class="pending">EN PREPARACIÓN</span></button>
+    <button class="card c-slate" onclick="pending('Configuración general')"><span class="ico">⚙️</span><b>Configuración</b><small>Ajustes de la aplicación</small><span class="pending">EN PREPARACIÓN</span></button>
+  </div>
+
+  <div class="section-title"><h3>Módulos del turno</h3><span>Solicitados</span></div>
+  <div class="grid">
+    <button class="card c-green wide" onclick="pending('Generar novedades del turno')"><span class="ico">📋</span><div><b>Generar novedades del turno</b><small>Documento automático del turno actual</small></div><span class="pending">PENDIENTE</span></button>
+    <button class="card c-orange wide" onclick="pending('Generar fatiga del turno')"><span class="ico">📈</span><div><b>Generar fatiga del turno</b><small>Documento de fatiga con personal y servicio</small></div><span class="pending">PENDIENTE</span></button>
+  </div>
+  <div class="note">Esta versión mantiene los módulos actuales en el servidor. Los apartados marcados “En preparación” todavía no ejecutan cambios administrativos; se activarán cuando quede listo el nuevo control de cuentas, roles y dispositivos.</div>
+</main>
+<nav class="bottom">
+  <button class="nav active" onclick="goHome()"><span class="n">⌂</span>Inicio</button>
+  <button class="nav" onclick="openRoute('infraccion')"><span class="n">＋</span>Captura</button>
+  <button class="nav" onclick="openRoute('estadisticas')"><span class="n">▥</span>Estadísticas</button>
+  <button class="nav" onclick="openRoute('reporte')"><span class="n">⋯</span>Reportes</button>
+</nav>
+<script>
+function openRoute(page){ location.href='vialidad://open?page='+encodeURIComponent(page); }
+function goHome(){ location.href='vialidad://dashboard'; }
+function pending(name){ alert(name+'\n\nMódulo pendiente de activación. Ya está contemplado en el diseño de Vialidad Tecomán.'); }
+</script>
+</body>
+</html>
